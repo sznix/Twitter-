@@ -9,8 +9,9 @@ Check out [LIVE DEMO here!!]( https://soheil-twitter.herokuapp.com/ )
 # Screenshot
 
 
+![Screenshot 2022-08-10 204140](https://user-images.githubusercontent.com/104791915/183991779-6156e754-beaa-43cf-91d4-d42206662b54.png)
 
-![Screenshot 1401-01-10 at 15 28 25](https://user-images.githubusercontent.com/100750452/160805459-2a391db7-010b-4624-9c65-dc38e5802c64.png)
+
 
 
 
