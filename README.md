@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-"# twitter" 
-=======
 
 # Twitter-Clone
 A sample web page of twitter
@@ -8,7 +5,7 @@ Twitter Clone
 Let's make simple Twitter. Users can post tweets and see everyone's them.
 To make the project simple, we do not have a sign/login function.
 So there are not user accounts and follow function. You can challenge after you finish the course.
-Check out [LIVE DEMO here!!](https://twitterclone-prashant.herokuapp.com/)
+Check out [LIVE DEMO here!!]( https://soheil-twitter.herokuapp.com/ )
 # Screenshot
 
 
