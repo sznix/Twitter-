@@ -1,6 +1,5 @@
 from django.db.models import F
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
 
 from .models import Post
@@ -12,11 +11,11 @@ def index(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return redirect('posts:index')
     else:
         form = PostForm()
 
-    posts = Post.objects.all().order_by('-created_at')[:20]
+    posts = Post.objects.all()[:20]
     return render(request, 'posts.html', {'posts': posts, 'form': form})
 
 
@@ -24,7 +23,7 @@ def index(request):
 def delete(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     post.delete()
-    return HttpResponseRedirect('/')
+    return redirect('posts:index')
 
 
 def edit(request, post_id):
@@ -33,7 +32,7 @@ def edit(request, post_id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return redirect('posts:index')
     else:
         form = PostForm(instance=post)
     return render(request, 'edit.html', {'post': post, 'form': form})
@@ -43,4 +42,4 @@ def edit(request, post_id):
 def likes(request, post_id):
     get_object_or_404(Post, id=post_id)
     Post.objects.filter(id=post_id).update(likecount=F('likecount') + 1)
-    return HttpResponseRedirect('/')
+    return redirect('posts:index')

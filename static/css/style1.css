@@ -7,7 +7,6 @@
   --color-bg: #fff;
   --color-bg-hover: #f5f8fa;
   --color-danger: #e0245e;
-  --color-like: #e0245e;
   --radius: 16px;
   --radius-sm: 8px;
   --shadow-menu: 0 2px 10px rgba(0, 0, 0, 0.12);
@@ -89,9 +88,14 @@ html, body {
   border-color: var(--color-primary);
 }
 
+.textarea-wrap {
+  position: relative;
+}
+
 .post_form textarea {
   width: 100%;
   padding: 12px;
+  padding-bottom: 28px;
   border: none;
   font-size: 18px;
   font-family: inherit;
@@ -103,6 +107,23 @@ html, body {
 
 .post_form textarea::placeholder {
   color: var(--color-text-secondary);
+}
+
+.char-count {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.char-count.warn {
+  color: #ffad1f;
+}
+
+.char-count.danger {
+  color: var(--color-danger);
+  font-weight: 700;
 }
 
 .post_form input[type="file"] {
@@ -120,8 +141,7 @@ html, body {
   border-top: 1px solid var(--color-border);
 }
 
-.input1 input[type="submit"],
-.tweet-btn {
+.input1 input[type="submit"] {
   background-color: var(--color-primary);
   color: #fff;
   border: none;
@@ -133,8 +153,7 @@ html, body {
   transition: background-color 0.2s;
 }
 
-.input1 input[type="submit"]:hover,
-.tweet-btn:hover {
+.input1 input[type="submit"]:hover {
   background-color: var(--color-primary-hover);
 }
 
@@ -188,8 +207,7 @@ html, body {
   min-width: 120px;
 }
 
-.posts li .menu form,
-.posts li .menu a {
+.posts li .menu form {
   display: block;
 }
 
@@ -236,6 +254,13 @@ html, body {
   min-width: 0;
 }
 
+.name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 .posts li .name_body .name {
   font-weight: 700;
   font-size: 15px;
@@ -244,14 +269,6 @@ html, body {
 .posts li .name_body .datetime {
   color: var(--color-text-secondary);
   font-size: 13px;
-  margin-left: 4px;
-}
-
-.name-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  flex-wrap: wrap;
 }
 
 .posts li .name_body p {
@@ -345,25 +362,24 @@ html, body {
   margin-top: 8px;
 }
 
+.cancel-anchor {
+  text-decoration: none;
+}
+
 .cancel-button {
-  background-color: var(--color-bg) !important;
-  color: var(--color-text) !important;
-  border: 1px solid var(--color-border) !important;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
   padding: 8px 20px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
-  width: auto !important;
 }
 
 .cancel-button:hover {
-  background-color: var(--color-bg-hover) !important;
-}
-
-.cancel-anchor {
-  text-decoration: none;
+  background-color: var(--color-bg-hover);
 }
 
 #update-button {
@@ -376,7 +392,6 @@ html, body {
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s;
-  width: auto;
 }
 
 #update-button:hover {
@@ -388,6 +403,7 @@ html, body {
   text-align: center;
   padding: 40px 20px;
   color: var(--color-text-secondary);
+  list-style: none;
 }
 
 /* Responsive */

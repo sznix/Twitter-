@@ -9,10 +9,13 @@
   </div>
 
   <section class="post_form">
-    <form action="/" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'posts:index' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="text" name="name" placeholder="Name" required />
-      <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
+      <div class="textarea-wrap">
+        <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
+        <span class="char-count">140</span>
+      </div>
       <input type="file" name="image" accept="image/*" />
       <div class="input1">
         <input type="submit" value="Tweet" />
@@ -26,10 +29,10 @@
       <li>
         <img class="menu_icon js-menu-icon" src="{% static 'img/menu.png' %}" alt="Menu" />
         <div class="menu">
-          <a href="{% url 'edit' post.id %}">Edit</a>
-          <form method="POST" action="{% url 'delete' post.id %}">
+          <a href="{% url 'posts:edit' post.id %}">Edit</a>
+          <form method="POST" action="{% url 'posts:delete' post.id %}">
             {% csrf_token %}
-            <button type="submit" class="delete-btn">Delete</button>
+            <button type="submit" class="delete-btn" onclick="return confirm('Delete this tweet?')">Delete</button>
           </form>
         </div>
 
@@ -44,12 +47,12 @@
           </div>
           <p>{{ post.body }}</p>
 
-          {% if post.image.url %}
+          {% if post.image %}
           <img src="{{ post.image.url }}" class="post-image" alt="Post image" />
           {% endif %}
 
           <div class="like-section">
-            <form method="POST" action="{% url 'like' post.id %}">
+            <form method="POST" action="{% url 'posts:like' post.id %}">
               {% csrf_token %}
               <button type="submit" class="like-btn">
                 <img src="{% static 'img/heart.png' %}" alt="Like" />
@@ -60,9 +63,9 @@
         </div>
       </li>
       {% empty %}
-      <div class="empty-state">
+      <li class="empty-state">
         <p>No tweets yet. Be the first to tweet!</p>
-      </div>
+      </li>
       {% endfor %}
     </ul>
   </section>

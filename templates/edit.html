@@ -4,7 +4,7 @@
 
 <section class="content">
   <div class="header">
-    <a href="/">
+    <a href="{% url 'posts:index' %}">
       <img src="{% static 'img/logo-twitter.png' %}" alt="Back to home" />
     </a>
     <h3>Edit Tweet</h3>
@@ -13,7 +13,7 @@
   <section class="edit">
     <section class="post_form">
       <form
-        action="{% url 'edit' post.id %}"
+        action="{% url 'posts:edit' post.id %}"
         method="POST"
         enctype="multipart/form-data"
       >
@@ -27,14 +27,14 @@
         />
         <textarea name="body" placeholder="What's happening?" required>{{ post.body }}</textarea>
         <input type="file" name="image" accept="image/*" />
-        {% if post.image.url %}
+        {% if post.image %}
         <img class="post-img" src="{{ post.image.url }}" alt="Current image" />
         {% endif %}
         <div class="banner">
-          <a class="cancel-anchor" href="/">
-            <input class="cancel-button" type="button" value="Cancel" />
+          <a class="cancel-anchor" href="{% url 'posts:index' %}">
+            <button class="cancel-button" type="button">Cancel</button>
           </a>
-          <input id="update-button" type="submit" value="Update" />
+          <button id="update-button" type="submit">Update</button>
         </div>
       </form>
     </section>
