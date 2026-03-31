@@ -28,4 +28,3 @@ Check out [LIVE DEMO here!!]( https://soheil-twitter.herokuapp.com/ )
 * Users can edit tweets.
 * Users can delete tweets.
 * Users can send a like to a tweet.
->>>>>>> acec1a29e0a7cc5029b5b721990cd821bbcbefce

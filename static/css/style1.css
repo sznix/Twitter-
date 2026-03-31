@@ -1,20 +1,21 @@
-/*
-common
-********************************/
+:root {
+  --color-primary: #1da1f2;
+  --color-border: #00cdff;
+  --color-text: #212529;
+  --color-bg: #fff;
+  --color-gray: #474747;
+}
 
 html,
 .home {
-
   height: 100%;
   margin: 0;
   font-family: var(--bs-font-sans-serif);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 .content {
@@ -22,21 +23,15 @@ html,
   height: 100%;
   margin: 0 auto;
 }
-/*
-Nav
-**********************************/
+
 .main {
   text-align: left;
   width: 100%;
   max-width: 600px;
-  border-left: 1px solid #00cdff;
-  border-right: 1px solid #00cdff;
+  border: 1px solid var(--color-border);
   box-sizing: border-box;
-  border-bottom: 1px solid #00cdff;
-  border-top: 1px solid #00cdff;
-  /*padding: 20px 40px;
-	border-bottom: 1px solid #ccc;***/
 }
+
 .main .main-header {
   width: 42.52px;
   padding: 10px;
@@ -46,6 +41,7 @@ Nav
   align-items: center;
   box-sizing: border-box;
 }
+
 .main .main-header .logo {
   width: 50px;
   margin-right: 20px;
@@ -53,31 +49,26 @@ Nav
   box-sizing: border-box;
 }
 
-/*
-Post
-********************************/
+.header {
+  display: flex;
+}
+
 .post_form {
   text-align: left;
   width: 100%;
   max-width: 600px;
-  border-left: 1px solid #00cdff;
-  border-right: 1px solid #00cdff;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-bottom: 1px solid #00cdff;
+  border-bottom: 1px solid var(--color-border);
 }
-.home .post_form .my_icon {
-  width: 80px;
-  padding: 5px 15px 25% 33px;
-  box-sizing: border-box;
-  float: left;
-}
+
 .post_form .input_area {
   width: calc(100% - 80px);
   flex-grow: 1;
-  float: right;
 }
 
 .post_form input {
@@ -85,11 +76,10 @@ Post
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #e6fef7;
-  float: right;
 }
+
 .post_form textarea {
-  float: right;
-  border: 0px;
+  border: 0;
   padding: 10px;
   width: 90%;
   height: 100px;
@@ -99,23 +89,24 @@ Post
   font-size: inherit;
 }
 
-.home .tweet-post .bottom-area {
+.input1 {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  border-top: 1px solid #00cdff;
+  border-top: 1px solid var(--color-border);
   padding-top: 8px;
-  float: right;
 }
+
 .bottom-area .mb-0 {
   margin-bottom: 0 !important;
   box-sizing: border-box;
 }
+
 .bottom-area .form-control-sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
 }
+
 .bottom-area .form-control {
   display: block;
   width: 60%;
@@ -124,21 +115,18 @@ Post
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  float: left;
 }
+
 .bottom-area .btn {
-  float: right;
-  border: 1px solid rgb(29, 161, 242);
-  background-color: rgb(29, 161, 242);
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
   padding: 10px 15px;
   margin-right: 13px;
   font-size: 15px;
@@ -147,10 +135,12 @@ Post
   right: 15px;
   color: white;
 }
+
 .space {
-  border-left: 1px solid #00cdff;
-  border-right: 1px solid #00cdff;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
 }
+
 .posts {
   max-width: 600px;
   height: 100%;
@@ -160,22 +150,20 @@ Post
 .posts ul {
   padding: 0;
 }
+
 .posts li {
   position: relative;
   display: flex;
-  border-bottom: 1px solid #00cdff;
-  border-left: 1px solid #00cdff;
-  border-right: 1px solid #00cdff;
+  border: 1px solid var(--color-border);
   padding: 20px 40px;
   list-style: none;
-  border-top: 1px solid #00cdff;
 }
+
 .post_img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-  float: left;
 }
 
 .posts li .menu_icon {
@@ -184,39 +172,49 @@ Post
   right: 30px;
   top: 18px;
 }
+
 .posts li .menu {
   display: none;
   position: absolute;
   top: 40px;
   right: 15px;
-  /* border: 1px solid #00cdff;
-	background-color: #00cdff; */
   padding: 10px 15px;
   font-size: 13px;
   border-radius: 3px;
 }
+
 .posts li .menu a {
   text-decoration: none;
   background-color: azure;
 }
+
+.posts li .menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
 .post-img {
   border-radius: 10px;
-  border: 1px solid #00cdff;
+  border: 1px solid var(--color-border);
   margin-bottom: 10px;
   width: 90%;
 }
+
 .icon-list {
   display: flex;
   margin-top: 15px;
   flex-direction: column;
   width: 10%;
 }
+
 .icon-list .like-button {
   font-size: 25px;
   border: none;
   border-radius: 5px;
   width: 34px;
-  height: 32;
+  height: 32px;
   color: red;
 }
 
@@ -224,11 +222,12 @@ Post
   width: 30px;
   padding-top: 20px;
   padding-left: 10px;
-  color: #474747;
+  color: var(--color-gray);
 }
 
-.posts li.logo {
+.posts li .logo {
   width: 100%;
+  flex-basis: 15%;
 }
 
 .posts li .logo img {
@@ -236,32 +235,36 @@ Post
 }
 
 .posts li .name_body {
-  flex-basis: 500%;
+  flex-basis: 85%;
 }
+
 .posts li .name_body .name {
   font-weight: bold;
 }
+
 .posts li .name_body .datetime {
   color: gray;
 }
-@media screen and (max-width: 500px) {
+
+@media (max-width: 500px) {
   .posts li .name_body .name {
     font-size: 20px;
   }
 }
+
 .cancel-anchor .cancel-button {
-  border: 1px solid rgb(29, 161, 242);
-  background-color: rgb(29, 161, 242);
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
   width: 20%;
   margin-left: 10px;
   border-radius: 3px;
   color: white;
 }
-#update-button {
-  border: 1px solid rgb(29, 161, 242);
-  background-color: rgb(29, 161, 242);
-  width: 20%;
 
+#update-button {
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
+  width: 20%;
   border-radius: 3px;
   color: white;
 }

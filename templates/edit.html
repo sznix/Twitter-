@@ -1,17 +1,19 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
 <section class="content">
   <div class="header">
     <a href="/">
-      <img src="/static/img/logo-twitter.png" alt=""style='width:60px;'
-      / >
+      <img src="{% static 'img/logo-twitter.png' %}" alt="Twitter logo" style="width: 60px" />
     </a>
     <h3>Edit</h3>
   </div>
-  <!-- </section> -->
+
   <section class="edit">
     <section class="post_form">
       <form
-        action="/edit/{{post.id}}/"
+        action="{% url 'edit' post.id %}"
         method="POST"
         enctype="multipart/form-data"
       >
@@ -21,16 +23,13 @@
           type="text"
           name="name"
           placeholder="Name"
-          value="{{post.name}}"
+          value="{{ post.name }}"
           required
         />
-        <textarea name="body" placeholder="What's Happening?" required>
-{{post.body}}</textarea
-        >
-        <label for="{{post.name}}"></label>
+        <textarea name="body" placeholder="What's happening?" required>{{ post.body }}</textarea>
         <input type="file" name="image" id="choose" />
         {% if post.image.url %}
-        <img class="post-img" src="{{ post.image.url }}" style="width: 100%" />
+        <img class="post-img" src="{{ post.image.url }}" alt="Current image" style="width: 100%" />
         {% endif %}
         <div class="banner">
           <a class="cancel-anchor" href="/">
@@ -46,5 +45,6 @@
       </form>
     </section>
   </section>
-  {% endblock %}
 </section>
+
+{% endblock %}

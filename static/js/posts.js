@@ -1,14 +1,8 @@
-/////////////////
-//Javascript for posts page
-////////////////
-
-$ (function() {
-    // Executed when js-menu-icon js clicked
-    $('.js-menu-icon').click(function(){
-    // $(this) : self element, namely div.js-menu-icon
-    // next()  : Next to div.js-menu-icon,namely div.menu
-
-       $(this).next().toggle();
-        
-    })
-})
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.js-menu-icon').forEach(function (icon) {
+    icon.addEventListener('click', function () {
+      var menu = this.nextElementSibling;
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+});
