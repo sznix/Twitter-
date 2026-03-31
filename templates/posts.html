@@ -4,71 +4,67 @@
 
 <section class="content">
   <div class="header">
-    <img
-      src="{% static 'img/techis-logo (1).png' %}"
-      alt="Twitter Clone logo"
-      style="width: 60px"
-    />
+    <img src="{% static 'img/logo-twitter.png' %}" alt="Twitter Clone" />
     <h3>Home</h3>
   </div>
 
-  <!-- Input Section -->
   <section class="post_form">
-    <form action="/" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'posts:index' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="text" name="name" placeholder="Name" required />
-      <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
-      <input type="file" name="image" />
+      <div class="textarea-wrap">
+        <textarea name="body" placeholder="What's happening?" maxlength="140" required></textarea>
+        <span class="char-count">140</span>
+      </div>
+      <input type="file" name="image" accept="image/*" />
       <div class="input1">
         <input type="submit" value="Tweet" />
       </div>
     </form>
   </section>
 
-  <!-- Output Post Section -->
   <section class="posts">
     <ul>
       {% for post in posts %}
       <li>
-        <!-- Menu Icon -->
         <img class="menu_icon js-menu-icon" src="{% static 'img/menu.png' %}" alt="Menu" />
         <div class="menu">
-          <form method="POST" action="{% url 'delete' post.id %}">
+          <a href="{% url 'posts:edit' post.id %}">Edit</a>
+          <form method="POST" action="{% url 'posts:delete' post.id %}">
             {% csrf_token %}
-            <button type="submit">Delete</button>
+            <button type="submit" class="delete-btn" onclick="return confirm('Delete this tweet?')">Delete</button>
           </form>
-          <a href="{% url 'edit' post.id %}">Edit</a>
         </div>
 
-        <!-- Logo -->
         <div class="logo">
           <img src="{% static 'img/user.png' %}" alt="User avatar" />
         </div>
 
-        <!-- Post Content -->
         <div class="name_body">
-          <div class="name">{{ post.name }}</div>
-          <div class="datetime">{{ post.created_at }}</div>
+          <div class="name-row">
+            <span class="name">{{ post.name }}</span>
+            <span class="datetime">{{ post.created_at|timesince }} ago</span>
+          </div>
           <p>{{ post.body }}</p>
 
-          {% if post.image.url %}
-          <img
-            src="{{ post.image.url }}"
-            style="width: 250px; height: 200px"
-            alt="Post image"
-          />
+          {% if post.image %}
+          <img src="{{ post.image.url }}" class="post-image" alt="Post image" />
           {% endif %}
 
-          <div>
-            <form method="POST" action="{% url 'like' post.id %}" style="display: inline">
+          <div class="like-section">
+            <form method="POST" action="{% url 'posts:like' post.id %}">
               {% csrf_token %}
-              <button type="submit" style="border: none; background: none; cursor: pointer;">
-                <img src="{% static 'img/heart.png' %}" alt="Like" style="width: 30px" />
+              <button type="submit" class="like-btn">
+                <img src="{% static 'img/heart.png' %}" alt="Like" />
               </button>
             </form>
-            {{ post.likecount }}
+            <span class="like-count">{{ post.likecount }}</span>
           </div>
         </div>
+      </li>
+      {% empty %}
+      <li class="empty-state">
+        <p>No tweets yet. Be the first to tweet!</p>
       </li>
       {% endfor %}
     </ul>

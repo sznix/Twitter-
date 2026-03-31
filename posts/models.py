@@ -5,19 +5,13 @@ from cloudinary.models import CloudinaryField
 class Post(models.Model):
     class Meta:
         db_table = 'post'
+        ordering = ['-created_at']
 
-    name = models.CharField(
-        'Name', blank=False, null=False, max_length=14, db_index=True, default='Anonymous'
-    )
-    body = models.CharField(
-        'Body', blank=True, max_length=140, db_index=True
-    )
-    image = CloudinaryField(
-        'image', blank=True, null=True, db_index=True
-    )
-    likecount = models.IntegerField(
-        'Like', default=0, null=True, blank=True
-    )
-    created_at = models.DateTimeField(
-        'Created DateTime', blank=True, auto_now_add=True
-    )
+    name = models.CharField(max_length=14, default='Anonymous')
+    body = models.TextField(max_length=140, blank=True)
+    image = CloudinaryField('image', blank=True, null=True)
+    likecount = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}: {self.body[:50]}'

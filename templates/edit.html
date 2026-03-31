@@ -4,22 +4,21 @@
 
 <section class="content">
   <div class="header">
-    <a href="/">
-      <img src="{% static 'img/logo-twitter.png' %}" alt="Twitter logo" style="width: 60px" />
+    <a href="{% url 'posts:index' %}">
+      <img src="{% static 'img/logo-twitter.png' %}" alt="Back to home" />
     </a>
-    <h3>Edit</h3>
+    <h3>Edit Tweet</h3>
   </div>
 
   <section class="edit">
     <section class="post_form">
       <form
-        action="{% url 'edit' post.id %}"
+        action="{% url 'posts:edit' post.id %}"
         method="POST"
         enctype="multipart/form-data"
       >
         {% csrf_token %}
         <input
-          class="name-input"
           type="text"
           name="name"
           placeholder="Name"
@@ -27,20 +26,15 @@
           required
         />
         <textarea name="body" placeholder="What's happening?" required>{{ post.body }}</textarea>
-        <input type="file" name="image" id="choose" />
-        {% if post.image.url %}
-        <img class="post-img" src="{{ post.image.url }}" alt="Current image" style="width: 100%" />
+        <input type="file" name="image" accept="image/*" />
+        {% if post.image %}
+        <img class="post-img" src="{{ post.image.url }}" alt="Current image" />
         {% endif %}
         <div class="banner">
-          <a class="cancel-anchor" href="/">
-            <input
-              class="cancel-button"
-              type="button"
-              id="delete"
-              value="Cancel"
-            />
+          <a class="cancel-anchor" href="{% url 'posts:index' %}">
+            <button class="cancel-button" type="button">Cancel</button>
           </a>
-          <input id="update-button" type="submit" value="Update" />
+          <button id="update-button" type="submit">Update</button>
         </div>
       </form>
     </section>
